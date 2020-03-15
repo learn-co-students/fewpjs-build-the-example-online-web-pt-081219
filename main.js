@@ -2,9 +2,16 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
-// Your JavaScript code goes here!
-
-
+// Your JavaScript code goes here
+function toggleModal() {
+  let modal = document.querySelector("#modal");
+  if (modal.style.display === "none") {
+    modal.style.display = "block";
+  } else {
+    modal.style.display = "none";
+  }
+}
+toggleModal()
 
 
 //------------------------------------------------------------------------------
