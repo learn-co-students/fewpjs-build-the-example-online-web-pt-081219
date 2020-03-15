@@ -11,7 +11,15 @@ function toggleModal() {
     modal.style.display = "none";
   }
 }
-toggleModal()
+
+let hearts = document.querySelectorAll('.like-glyph')
+hearts.forEach(heart => {
+  heart.addEventListener('click', e => {
+    if (e.target.innerText === EMPTY_HEART) {
+      e.target.innerText = FULL_HEART
+    } else { e.target.innerText = EMPTY_HEART }
+  })
+})
 
 
 //------------------------------------------------------------------------------
