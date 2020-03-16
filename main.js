@@ -20,21 +20,19 @@ function toggleModal(error) {
 let hearts = document.querySelectorAll('.like-glyph')
 hearts.forEach(heart => {
   heart.addEventListener('click', e => {
-    if (e.target.innerText === EMPTY_HEART) {
-      e.target.innerText = FULL_HEART
-      e.target.classList.add("activated-heart")
-    } else { 
-      e.target.innerText = EMPTY_HEART
-      e.target.classList = "like-glyph"
-    }
     mimicServerCall()
     .then((res)  => {
-      return console.log(res)
+        if (e.target.innerText === EMPTY_HEART) {
+        e.target.innerText = FULL_HEART
+        e.target.classList.add("activated-heart")
+      } else { 
+        e.target.innerText = EMPTY_HEART
+        e.target.classList = "like-glyph"
+      }
+      return res
     })
     .catch((error) => {
-      console.log(error)
       toggleModal(error)
-      // setTimeout(toggleModal(error), 500)
     });
   })
 })
@@ -51,8 +49,8 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
       if (isRandomFailure) {
         reject("Random server error. Try again.");
       } else {
-        // resolve("Pretend remote server notified of action!");
-        reject("Random server error. Try again.");
+        resolve("Pretend remote server notified of action!");
+        // reject("Random server error. Try again.");
       }
     }, 300);
   });
