@@ -17,7 +17,12 @@ hearts.forEach(heart => {
   heart.addEventListener('click', e => {
     if (e.target.innerText === EMPTY_HEART) {
       e.target.innerText = FULL_HEART
-    } else { e.target.innerText = EMPTY_HEART }
+      e.target.classList.add("activated-heart")
+    } else { 
+      e.target.innerText = EMPTY_HEART
+      e.target.classList = "like-glyph"
+    }
+    mimicServerCall();
   })
 })
 
