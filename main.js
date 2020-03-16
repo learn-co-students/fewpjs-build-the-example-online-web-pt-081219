@@ -3,10 +3,15 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here
-function toggleModal() {
+function toggleModal(error) {
   let modal = document.querySelector("#modal");
   if (modal.style.display === "none") {
     modal.style.display = "block";
+    modal.innerText = error 
+    setTimeout(function() {
+      let modal = document.querySelector("#modal");
+      modal.style.display = "none"
+    }, 5000)
   } else {
     modal.style.display = "none";
   }
@@ -22,7 +27,15 @@ hearts.forEach(heart => {
       e.target.innerText = EMPTY_HEART
       e.target.classList = "like-glyph"
     }
-    mimicServerCall();
+    mimicServerCall()
+    .then((res)  => {
+      return console.log(res)
+    })
+    .catch((error) => {
+      console.log(error)
+      toggleModal(error)
+      // setTimeout(toggleModal(error), 500)
+    });
   })
 })
 
@@ -38,7 +51,8 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
       if (isRandomFailure) {
         reject("Random server error. Try again.");
       } else {
-        resolve("Pretend remote server notified of action!");
+        // resolve("Pretend remote server notified of action!");
+        reject("Random server error. Try again.");
       }
     }, 300);
   });
